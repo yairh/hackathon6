@@ -1,10 +1,10 @@
 
 def dummy_user_details():
-    details = [{'username': 'Ari'},
-               {'username': 'Ilona'},
-               {'username': 'Jeremy'},
-               {'username': 'Remy'},
-               {'username': 'Yair'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv'},
+               {'username': 'Ilona', 'city': 'Tel Aviv'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv'},
+               {'username': 'Remy', 'city': 'Tel Aviv'},
+               {'username': 'Yair', 'city': 'Tel Aviv'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -68,8 +68,3 @@ def dummy_jobs():
                {'username': 'Ari', 'skill': 'Is Yair'}]
     for i in range(len(details)):
         yield details[i]
-
-# a = dummy_user_details()
-# for i in dummy_skills():
-#     print(i)
-# print(list(a))
