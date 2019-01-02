@@ -1,7 +1,7 @@
 import sys
 import logging
 
-from database_queries import create_databases, insert_user_details, populate_skill_categories, populate_skills
+import database_queries
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -20,15 +20,24 @@ logger.addHandler(logging.StreamHandler(sys.stdout))  # For printing to stdout
 
 ###################
 
-create_databases()
+database_queries.create_databases()
 
 import dummy_data
 
 for i in dummy_data.dummy_user_details():
-    insert_user_details(i)
+    database_queries.insert_user_details(i)
 
 for i in dummy_data.dummy_skill_categories():
-    populate_skill_categories(i)
+    database_queries.populate_skill_categories(i)
 
 for i in dummy_data.dummy_skills():
-    populate_skills(i)
+    database_queries.populate_skills(i)
+
+for i in dummy_data.dummy_statuses():
+    database_queries.populate_statuses(i)
+
+for i in dummy_data.dummy_person_skills():
+    database_queries.insert_person_skills(i)
+
+for i in dummy_data.dummy_jobs():
+    database_queries.create_job(i)
