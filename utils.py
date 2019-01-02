@@ -45,7 +45,6 @@ def getListOfSkills():
             """)
 
         result = cur.fetchall()
-        print(result)
         return result
     except Exception as err:
         logging.exception(err)
