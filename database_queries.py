@@ -9,11 +9,11 @@ logger = logging.getLogger(__name__)
 def create_databases(username=username, pw=pw, prt=prt, database=database):
     make_database(username, pw, prt, database)
     make_tables(username, pw, prt, database)
+    logging.info('Complete database initialized.')
 
 
 def make_database(username, pw, prt, database):
     con = mysql.connector.connect(user=username, password=pw, port=prt)
-
     cur = con.cursor()
     try:
         cur.execute(
@@ -21,7 +21,7 @@ def make_database(username, pw, prt, database):
                     CREATE DATABASE IF NOT EXISTS %s
                     """ % (database,))
 
-        logging.info('Database initialized.')
+        logging.info('Database started.')
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -29,7 +29,6 @@ def make_database(username, pw, prt, database):
 
 def make_tables(username, pw, prt, database):
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-
     cur = con.cursor()
     try:
         cur.execute(
@@ -38,6 +37,7 @@ def make_tables(username, pw, prt, database):
                 (id int NOT NULL AUTO_INCREMENT,
                 username varchar(255) NOT NULL UNIQUE,
                 wallet FLOAT NOT NULL DEFAULT 0,
+                joined DATETIME DEFAULT now(),
                 PRIMARY KEY (id)
                 )
             """)
@@ -86,47 +86,33 @@ def make_tables(username, pw, prt, database):
 
         cur.execute(
             """
-            CREATE TABLE IF NOT EXISTS job_status
+            CREATE TABLE IF NOT EXISTS statuses
                 (id int NOT NULL AUTO_INCREMENT,
                 status varchar(255) NOT NULL UNIQUE,
                 PRIMARY KEY (id)
                 )
             """)
 
-        logging.info('"job_status" table initialized.')
-
+        logging.info('"statuses" table initialized.')
 
         cur.execute(
             """
-            CREATE TABLE IF NOT EXISTS available_jobs
+            CREATE TABLE IF NOT EXISTS jobs
                 (id int NOT NULL AUTO_INCREMENT,
                 user_id int NOT NULL,
+                worker_id int DEFAULT NULL,
                 skill_id int NOT NULL,
                 status int NOT NULL,
+                posted DATETIME DEFAULT now(),
+                completed DATETIME DEFAULT NULL,
                 PRIMARY KEY (id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (skill_id) REFERENCES skills(id),
-                FOREIGN KEY (status) REFERENCES job_status(id)
+                FOREIGN KEY (status) REFERENCES statuses(id)
                 )
             """)
 
-        logging.info('"available_jobs" table initialized.')
-
-        cur.execute(
-            """
-            CREATE TABLE IF NOT EXISTS pending_jobs
-                (id int NOT NULL AUTO_INCREMENT,
-                applicant_id int NOT NULL,
-                worker_id int NOT NULL,
-                job_id int NOT NULL,
-                PRIMARY KEY (id),
-                FOREIGN KEY (applicant_id) REFERENCES users(id),
-                FOREIGN KEY (worker_id) REFERENCES users(id),
-                FOREIGN KEY (job_id) REFERENCES available_jobs(id)
-                )
-            """)
-
-        logging.info('"pending_jobs" table initialized.')
+        logging.info('"jobs" table initialized.')
 
     except Exception as err:
         logging.exception(err)
@@ -135,15 +121,14 @@ def make_tables(username, pw, prt, database):
 def populate_skill_categories(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['skill_category']]
 
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
     try:
-        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-        cur = con.cursor()
 
         the_query = """
             INSERT INTO skill_categories (
-                skill_category,
-                image
-            ) VALUES (%s, %s)
+                skill_category
+            ) VALUES (%s)
             """
 
         cur.execute(the_query, insert_string)
@@ -155,7 +140,6 @@ def populate_skill_categories(details, username=username, pw=pw, prt=prt, databa
 
 def populate_skills(details, username=username, pw=pw, prt=prt, database=database):
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-
     cur = con.cursor()
     try:
         cur.execute(
@@ -168,9 +152,6 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
         result = cur.fetchall()
 
         insert_string = [result[0][0], details['skill']]
-
-        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-        cur = con.cursor()
 
         the_query = """
             INSERT INTO skills (
@@ -185,15 +166,14 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
         logging.exception(err)
     con.close()
 
-def populate_job_status(details, username=username, pw=pw, prt=prt, database=database):
+def populate_statuses(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['status']]
 
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
     try:
-        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-        cur = con.cursor()
-
         the_query = """
-            INSERT INTO job_status (
+            INSERT INTO statuses (
                 status
             ) VALUES (%s)
             """
@@ -204,12 +184,13 @@ def populate_job_status(details, username=username, pw=pw, prt=prt, database=dat
         logging.exception(err)
     con.close()
 
+
 def insert_user_details(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['username']]
 
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
     try:
-        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-        cur = con.cursor()
 
         the_query = """
             INSERT INTO users (
@@ -223,13 +204,100 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
         logging.exception(err)
     con.close()
 
+def insert_person_skills(details, username=username, pw=pw, prt=prt, database=database):
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+
+    cur = con.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT id
+            FROM users
+            WHERE username='%s'
+            """ % (details['username'],))
+
+        the_username = cur.fetchall()
+
+        cur.execute(
+            """
+            SELECT id
+            FROM skills
+            WHERE skill='%s'
+            """ % (details['skill'],))
+
+        the_skill = cur.fetchall()
+
+        insert_string = [the_username[0][0], the_skill[0][0]]
+
+        the_query = """
+            INSERT INTO person_skills (
+                user_id,
+                skill_id
+            ) VALUES (%s, %s)
+            """
+
+        cur.execute(the_query, insert_string)
+        con.commit()
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def create_job(details, username=username, pw=pw, prt=prt, database=database):
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+
+    cur = con.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT id
+            FROM users
+            WHERE username='%s'
+            """ % (details['username'],))
+
+        the_username = cur.fetchall()
+
+        cur.execute(
+            """
+            SELECT id
+            FROM skills
+            WHERE skill='%s'
+            """ % (details['skill'],))
+
+        the_skill = cur.fetchall()
+
+        cur.execute(
+            """
+            SELECT id
+            FROM statuses
+            WHERE status='Available'
+            """)
+
+        the_status = cur.fetchall()
+
+        insert_string = [the_username[0][0], the_skill[0][0], the_status[0][0]]
+
+        the_query = """
+            INSERT INTO jobs (
+                user_id,
+                skill_id,
+                status
+            ) VALUES (%s, %s, %s)
+            """
+
+        cur.execute(the_query, insert_string)
+        con.commit()
+    except Exception as err:
+        logging.exception(err)
+    con.close()
 
 
 if __name__ == "__main__":
+    pass
     # create_databases()
-
-    import dummy_data
-
+    #
+    # import dummy_data
+    #
     # for i in dummy_data.dummy_user_details():
     #     insert_user_details(i)
     #
@@ -238,6 +306,12 @@ if __name__ == "__main__":
     #
     # for i in dummy_data.dummy_skills():
     #     populate_skills(i)
-
-    for i in dummy_data.dummy_job_status():
-        populate_job_status(i)
+    #
+    # for i in dummy_data.dummy_statuses():
+    #     populate_statuses(i)
+    #
+    # for i in dummy_data.dummy_person_skills():
+    #     insert_person_skills(i)
+    #
+    # for i in dummy_data.dummy_jobs():
+    #     create_job(i)
