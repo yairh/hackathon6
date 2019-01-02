@@ -1,19 +1,35 @@
+import numpy as np
+
 
 def dummy_user_details():
-    details = [{'username': 'Ari', 'city': 'Tel Aviv'},
-               {'username': 'Ilona', 'city': 'Tel Aviv'},
-               {'username': 'Jeremy', 'city': 'Tel Aviv'},
-               {'username': 'Remy', 'city': 'Tel Aviv'},
-               {'username': 'Yair', 'city': 'Tel Aviv'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder'}]
     for i in range(len(details)):
         yield details[i]
 
 
 def dummy_skill_categories():
-    details = [{'skill_category': 'Coaching', 'image': 'placeholder'},
-               {'skill_category': 'Tutoring', 'image': 'placeholder'},
-               {'skill_category': 'Home Repair', 'image': 'placeholder'},
-               {'skill_category': 'Being Yair', 'image': 'placeholder'}]
+    details = [{'skill_category': 'Coaching', 'image': 'https://images.unsplash.com/photo-1512291313931-d4291048e7b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'},
+               {'skill_category': 'Builder', 'image': 'https://i.imgur.com/cWnLqV9.jpg'},
+               {'skill_category': 'Gardener', 'image': 'https://i.imgur.com/HggIaFy.jpg'},
+               {'skill_category': 'Mechanic', 'image': 'https://i.imgur.com/B1AZAge.jpg'},
+               {'skill_category': 'Mover', 'image': 'https://i.imgur.com/eBbmkSw.jpg'},
+               {'skill_category': 'Beauty Care', 'image': 'https://i.imgur.com/XVbOhsj.jpg'},
+               {'skill_category': 'Cooking', 'image': 'https://i.imgur.com/NbjQbsJ.jpg'},
+               {'skill_category': 'Computer', 'image': 'https://i.imgur.com/QTWApEe.jpg'},
+               {'skill_category': 'Cleaning', 'image': 'https://i.imgur.com/dJPwwln.jpg'},
+               {'skill_category': 'Tutoring', 'image': 'https://i.imgur.com/bvYF7QZ.jpg'},
+               {'skill_category': 'Plumber', 'image': 'https://i.imgur.com/P6TLN7H.jpg'},
+               {'skill_category': 'Electrician', 'image': 'https://i.imgur.com/eshLvdh.jpg'},
+               {'skill_category': 'Baby-sitter', 'image': 'https://i.imgur.com/oXbFh6M.jpg'},
+               {'skill_category': 'Dog-sitter', 'image': 'https://i.imgur.com/b1V0dO8.jpg'},
+               {'skill_category': 'Groceries', 'image': 'https://i.imgur.com/VzE4sCw.jpg'},
+               {'skill_category': 'Home Repair', 'image': ''},
+               {'skill_category': 'Being Yair', 'image': ''}
+               ]
     for i in range(len(details)):
         yield details[i]
 
@@ -33,6 +49,9 @@ def dummy_skills():
 def dummy_statuses():
     details = [{'status': 'Available'},
                {'status': 'Pending'},
+               {'status': 'Starting'},
+               {'status': 'In Progress'},
+               {'status': 'Finishing'},
                {'status': 'Complete'}]
     for i in range(len(details)):
         yield details[i]
@@ -53,6 +72,7 @@ def dummy_person_skills():
     for i in range(len(details)):
         yield details[i]
 
+
 def dummy_jobs():
     details = [{'username': 'Ari', 'skill': 'Self-help book provider'},
                {'username': 'Ari', 'skill': 'Mathematics'},
@@ -68,3 +88,13 @@ def dummy_jobs():
                {'username': 'Ari', 'skill': 'Is Yair'}]
     for i in range(len(details)):
         yield details[i]
+
+
+def dummy_jobs_many(num_repeats):
+    people = ['Ari', 'Ilona', 'Jeremy', 'Remy', 'Yair']
+    people_w = [0.3, 0.2, 0.2, 0.2, 0.1]
+    skills = ['Mathematics', 'Physics', 'Electrician', 'Plumber', 'Self-help book provider', 'Is Yair', 'Professional Wizard']
+    skills_w = [0.05, 0.05, 0.15, 0.15, 0.1, 0.2, 0.3]
+
+    for i in range(num_repeats):
+        yield {'username': np.random.choice(people, size=1, p=people_w)[0], 'skill': np.random.choice(skills, size=1, p=skills_w)[0]}

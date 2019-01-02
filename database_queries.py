@@ -47,6 +47,7 @@ def make_tables(username, pw, prt, database):
             CREATE TABLE IF NOT EXISTS users
                 (id int NOT NULL AUTO_INCREMENT,
                 username varchar(255) NOT NULL UNIQUE,
+                image varchar(255),
                 city_id int NOT NULL,
                 wallet FLOAT NOT NULL DEFAULT 0,
                 joined DATETIME DEFAULT now(),
@@ -116,8 +117,9 @@ def make_tables(username, pw, prt, database):
                 worker_id int DEFAULT NULL,
                 skill_id int NOT NULL,
                 status int NOT NULL,
-                posted DATETIME DEFAULT now(),
-                completed DATETIME DEFAULT NULL,
+                post_time DATETIME DEFAULT now(),
+                start_time DATETIME DEFAULT NULL,
+                complete_time DATETIME DEFAULT NULL,
                 PRIMARY KEY (id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (skill_id) REFERENCES skills(id),
@@ -240,13 +242,14 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
 
         the_city = cur.fetchall()
 
-        insert_string = [details['username'], the_city[0][0]]
+        insert_string = [details['username'], details['image'], the_city[0][0]]
 
         the_query = """
             INSERT INTO users (
                 username,
+                image,
                 city_id
-            ) VALUES (%s, %s)
+            ) VALUES (%s, %s, %s)
             """
 
         cur.execute(the_query, insert_string)
