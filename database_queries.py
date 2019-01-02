@@ -141,8 +141,9 @@ def populate_skill_categories(details, username=username, pw=pw, prt=prt, databa
 
         the_query = """
             INSERT INTO skill_categories (
-                skill_category
-            ) VALUES (%s)
+                skill_category,
+                image
+            ) VALUES (%s, %s)
             """
 
         cur.execute(the_query, insert_string)
