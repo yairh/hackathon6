@@ -17,9 +17,9 @@ def make_database(username, pw, prt, database):
     cur = con.cursor()
     try:
         cur.execute(
-                    """
-                    CREATE DATABASE IF NOT EXISTS %s
-                    """ % (database,))
+            """
+            CREATE DATABASE IF NOT EXISTS %s
+            """ % (database,))
 
         logging.info('Database initialized.')
     except Exception as err:
@@ -95,7 +95,6 @@ def make_tables(username, pw, prt, database):
 
         logging.info('"job_status" table initialized.')
 
-
         cur.execute(
             """
             CREATE TABLE IF NOT EXISTS available_jobs
@@ -131,6 +130,7 @@ def make_tables(username, pw, prt, database):
     except Exception as err:
         logging.exception(err)
     con.close()
+
 
 def populate_skill_categories(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['skill_category']]
@@ -184,6 +184,7 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
         logging.exception(err)
     con.close()
 
+
 def populate_job_status(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['status']]
 
@@ -203,6 +204,7 @@ def populate_job_status(details, username=username, pw=pw, prt=prt, database=dat
         logging.exception(err)
     con.close()
 
+
 def insert_user_details(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['username']]
 
@@ -221,7 +223,6 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
     except Exception as err:
         logging.exception(err)
     con.close()
-
 
 
 if __name__ == "__main__":
