@@ -119,7 +119,7 @@ def make_tables(username, pw, prt, database):
     con.close()
 
 def populate_skill_categories(details, username=username, pw=pw, prt=prt, database=database):
-    insert_string = [details['skill_category']]
+    insert_string = [details['skill_category'], details['image']]
 
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
@@ -127,8 +127,9 @@ def populate_skill_categories(details, username=username, pw=pw, prt=prt, databa
 
         the_query = """
             INSERT INTO skill_categories (
-                skill_category
-            ) VALUES (%s)
+                skill_category,
+                image
+            ) VALUES (%s, %s)
             """
 
         cur.execute(the_query, insert_string)
@@ -151,13 +152,14 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
 
         result = cur.fetchall()
 
-        insert_string = [result[0][0], details['skill']]
+        insert_string = [result[0][0], details['skill'], details['image']]
 
         the_query = """
             INSERT INTO skills (
                 category,
-                skill
-            ) VALUES (%s, %s)
+                skill,
+                image
+            ) VALUES (%s, %s, %s)
             """
 
         cur.execute(the_query, insert_string)
