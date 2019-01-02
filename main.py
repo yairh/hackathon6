@@ -53,24 +53,24 @@ def browse_show(showid):
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
 
 
-# @route('/ajax/show/<catid>')
-# def browse_skills_from(catid):
-#     try:
-#         con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-#         cur = con.cursor()
-#
-#         cur.execute(
-#             """
-#             SELECT *
-#             FROM skill_categories
-#             """)
-#
-#         result = cur.fetchall()
-#         return result
-#     except Exception as err:
-#         logging.exception(err)
-#     con.close()
-#     return template("./templates/show.tpl", result=result)
+@route('/ajax/show/<catid>')
+def browse_skills_from(catid):
+    try:
+        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+        cur = con.cursor()
+
+        cur.execute(
+            """
+            SELECT *
+            FROM skill_categories
+            """)
+
+        result = cur.fetchall()
+        return result
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+    return template("./templates/show.tpl", result=result)
 
 
 @route('/show/<showid>/episode/<episodeid>')
