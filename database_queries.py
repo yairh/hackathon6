@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 def create_databases(username=username, pw=pw, prt=prt, database=database):
     make_database(username, pw, prt, database)
     make_tables(username, pw, prt, database)
+    logging.info('Complete database initialized.')
 
 
 def make_database(username, pw, prt, database):
@@ -20,7 +21,7 @@ def make_database(username, pw, prt, database):
                     CREATE DATABASE IF NOT EXISTS %s
                     """ % (database,))
 
-        logging.info('Database initialized.')
+        logging.info('Database started.')
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -36,6 +37,7 @@ def make_tables(username, pw, prt, database):
                 (id int NOT NULL AUTO_INCREMENT,
                 username varchar(255) NOT NULL UNIQUE,
                 wallet FLOAT NOT NULL DEFAULT 0,
+                joined DATETIME DEFAULT now(),
                 PRIMARY KEY (id)
                 )
             """)
@@ -101,6 +103,8 @@ def make_tables(username, pw, prt, database):
                 worker_id int DEFAULT NULL,
                 skill_id int NOT NULL,
                 status int NOT NULL,
+                posted DATETIME DEFAULT now(),
+                completed DATETIME DEFAULT NULL,
                 PRIMARY KEY (id),
                 FOREIGN KEY (user_id) REFERENCES users(id),
                 FOREIGN KEY (skill_id) REFERENCES skills(id),
@@ -109,22 +113,6 @@ def make_tables(username, pw, prt, database):
             """)
 
         logging.info('"jobs" table initialized.')
-
-        # cur.execute(
-        #     """
-        #     CREATE TABLE IF NOT EXISTS pending_jobs
-        #         (id int NOT NULL AUTO_INCREMENT,
-        #         applicant_id int NOT NULL,
-        #         worker_id int NOT NULL,
-        #         job_id int NOT NULL,
-        #         PRIMARY KEY (id),
-        #         FOREIGN KEY (applicant_id) REFERENCES users(id),
-        #         FOREIGN KEY (worker_id) REFERENCES users(id),
-        #         FOREIGN KEY (job_id) REFERENCES available_jobs(id)
-        #         )
-        #     """)
-        #
-        # logging.info('"pending_jobs" table initialized.')
 
     except Exception as err:
         logging.exception(err)
@@ -139,9 +127,8 @@ def populate_skill_categories(details, username=username, pw=pw, prt=prt, databa
 
         the_query = """
             INSERT INTO skill_categories (
-                skill_category,
-                image
-            ) VALUES (%s, %s)
+                skill_category
+            ) VALUES (%s)
             """
 
         cur.execute(the_query, insert_string)
@@ -165,9 +152,6 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
         result = cur.fetchall()
 
         insert_string = [result[0][0], details['skill']]
-
-        # con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
-        # cur = con.cursor()
 
         the_query = """
             INSERT INTO skills (
