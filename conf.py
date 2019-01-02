@@ -1,4 +1,4 @@
 username = 'root'
-pw = ''
+pw = 'admin'
 prt = 3306
 database = 'ITC_hackathon'
