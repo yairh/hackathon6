@@ -1,3 +1,4 @@
 .idea
 conf.py
 hackathon.log
+.gitignore
