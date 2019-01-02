@@ -6,3 +6,659 @@
 2019-01-02 13:38:14,049 - root - INFO - "job_status" table initialized.
 2019-01-02 13:38:14,066 - root - INFO - "available_jobs" table initialized.
 2019-01-02 13:38:14,081 - root - INFO - "pending_jobs" table initialized.
+2019-01-02 14:52:33,512 - root - INFO - Database initialized.
+2019-01-02 14:52:33,555 - root - INFO - "users" table initialized.
+2019-01-02 14:52:33,558 - root - INFO - "skill_categories" table initialized.
+2019-01-02 14:52:33,560 - root - INFO - "skills" table initialized.
+2019-01-02 14:52:33,567 - root - INFO - "person_skills" table initialized.
+2019-01-02 14:52:33,571 - root - INFO - "job_status" table initialized.
+2019-01-02 14:52:33,575 - root - INFO - "available_jobs" table initialized.
+2019-01-02 14:52:33,584 - root - INFO - "pending_jobs" table initialized.
+2019-01-02 14:52:33,625 - root - ERROR - 1062 (23000): Duplicate entry 'Ari' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ari' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ari' for key 'username'
+2019-01-02 14:52:33,667 - root - ERROR - 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ilona' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+2019-01-02 14:52:33,697 - root - ERROR - 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Jeremy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+2019-01-02 14:52:33,733 - root - ERROR - 1062 (23000): Duplicate entry 'Remy' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Remy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Remy' for key 'username'
+2019-01-02 14:52:33,770 - root - ERROR - 1062 (23000): Duplicate entry 'Yair' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Yair' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Yair' for key 'username'
+2019-01-02 14:52:33,809 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,837 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,858 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,879 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,906 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,929 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,962 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:33,989 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,013 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,048 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,081 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,104 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,131 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,157 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 14:52:34,182 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:40,801 - root - INFO - Database initialized.
+2019-01-02 15:00:40,837 - root - INFO - "users" table initialized.
+2019-01-02 15:00:40,840 - root - INFO - "skill_categories" table initialized.
+2019-01-02 15:00:40,842 - root - INFO - "skills" table initialized.
+2019-01-02 15:00:40,844 - root - INFO - "person_skills" table initialized.
+2019-01-02 15:00:40,847 - root - INFO - "job_status" table initialized.
+2019-01-02 15:00:40,849 - root - INFO - "available_jobs" table initialized.
+2019-01-02 15:00:40,851 - root - INFO - "pending_jobs" table initialized.
+2019-01-02 15:00:40,878 - root - ERROR - 1062 (23000): Duplicate entry 'Ari' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ari' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ari' for key 'username'
+2019-01-02 15:00:40,908 - root - ERROR - 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ilona' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+2019-01-02 15:00:40,945 - root - ERROR - 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Jeremy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+2019-01-02 15:00:40,970 - root - ERROR - 1062 (23000): Duplicate entry 'Remy' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Remy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Remy' for key 'username'
+2019-01-02 15:00:41,001 - root - ERROR - 1062 (23000): Duplicate entry 'Yair' for key 'username'
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Yair' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 220, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Yair' for key 'username'
+2019-01-02 15:00:41,029 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,054 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,080 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,115 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,137 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,162 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,186 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,211 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,233 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,262 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,291 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,315 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,338 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,363 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
+2019-01-02 15:00:41,384 - root - ERROR - Not enough parameters for the SQL statement
+Traceback (most recent call last):
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 65, in __call__
+    return self.params[index]
+IndexError: tuple index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ilona/Desktop/Hack/hackathon6-/database_queries.py", line 149, in populate_skill_categories
+    cur.execute(the_query, insert_string)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 258, in execute
+    stmt = RE_PY_PARAM.sub(psub, stmt)
+  File "/Users/ilona/Library/Python/3.6/lib/python/site-packages/mysql/connector/cursor_cext.py", line 68, in __call__
+    "Not enough parameters for the SQL statement")
+mysql.connector.errors.ProgrammingError: Not enough parameters for the SQL statement
