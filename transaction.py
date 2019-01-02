@@ -27,15 +27,21 @@ class Transaction:
         self.status = 'Done'
 
 
-# p1 = Profile('John', 1, 'Hacking')
-# p2 = Profile('James', 10, 'Magic')
-# print(p1)
-# print(p2)
-#
-# trans = Transaction(p2,p1,1)
-# print(trans)
-# print(trans.status)
-# trans.run()
-# print(trans.status)
-# print(p1)
-# print(p2)
+class Job:
+
+    def __init__(self,id, ,status='Pending'):
+        self.id = id
+        self.status = status
+        self.
+
+    def accept(self,):
+        self.
+
+    def make_transaction(self,amount):
+        self.transaction = Transaction(,amount)
+
+    def run(self):
+        self.transaction.run()
+
+
+
