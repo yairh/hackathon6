@@ -127,6 +127,24 @@ def update_profile():
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
 
 
+@get('/register')
+def get_register_page():
+    sectionTemplate = "./templates/register.tpl"
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@post('/register')
+def register():
+    sectionTemplate = "./templates/register.tpl"
+    result = {
+        "name": request.forms.get("name"),
+        "skill": request.forms.get("skill"),
+        "city": request.forms.get("city")
+    }
+    print(result)
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
 @error(404)
 def error404(error):
     sectionTemplate = "./templates/404.tpl"
