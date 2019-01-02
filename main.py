@@ -1,6 +1,9 @@
 import os
 from bottle import (get, post, redirect, request, route, run, static_file, error, template)
 import utils
+import mysql.connector
+from conf import username, pw, prt, database
+import logging
 
 # Static Routes t
 
@@ -50,10 +53,24 @@ def browse_show(showid):
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
 
 
-@route('/ajax/show/<showid>')
-def browse_show(showid):
-    result = utils.getJsonFromFile(int(showid))
-    return template("./templates/show.tpl", result=result)
+# @route('/ajax/show/<catid>')
+# def browse_skills_from(catid):
+#     try:
+#         con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+#         cur = con.cursor()
+#
+#         cur.execute(
+#             """
+#             SELECT *
+#             FROM skill_categories
+#             """)
+#
+#         result = cur.fetchall()
+#         return result
+#     except Exception as err:
+#         logging.exception(err)
+#     con.close()
+#     return template("./templates/show.tpl", result=result)
 
 
 @route('/show/<showid>/episode/<episodeid>')
@@ -86,20 +103,46 @@ def search():
 @post('/search')
 def post_search():
     sectionTemplate = "./templates/search_result.tpl"
-    query = request.forms.get('q')
-    print(type(query))
-    listOfShows = utils.getListOfShows()
-    results = []
-    for show in listOfShows:
-        for episode in show['_embedded']['episodes']:
-            if query in episode["name"] or (episode["summary"] is not None and query in episode["summary"]):
-                match = {
-                    "showid": show["id"],
-                    "episodeid": episode["id"],
-                    "text": str(show["name"] + ": " + episode["name"])
-                         }
-                results.append(match)
+    result = {
+        "query": request.forms.get('skillsearch')
+    }
+    print(result)
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={}, query=query, results=results)
+
+
+@get('/profile')
+def get_profile():
+    sectionTemplate = "./templates/profile.tpl"
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@post('/profile')
+def update_profile():
+    sectionTemplate = "./templates/profile.tpl"
+    result = {
+        "name": request.forms.get("name"),
+        "skill": request.forms.get("skill"),
+        "city": request.forms.get("city")
+    }
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@get('/register')
+def get_register_page():
+    sectionTemplate = "./templates/register.tpl"
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@post('/register')
+def register():
+    sectionTemplate = "./templates/register.tpl"
+    result = {
+        "name": request.forms.get("name"),
+        "skill": request.forms.get("skill"),
+        "city": request.forms.get("city")
+    }
+    print(result)
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
 
 
 @error(404)
