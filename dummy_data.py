@@ -49,6 +49,9 @@ def dummy_skills():
 def dummy_statuses():
     details = [{'status': 'Available'},
                {'status': 'Pending'},
+               {'status': 'Starting'},
+               {'status': 'In Progress'},
+               {'status': 'Finishing'},
                {'status': 'Complete'}]
     for i in range(len(details)):
         yield details[i]
