@@ -816,3 +816,155 @@ IndexError: list index out of range
 2019-01-02 15:08:54,286 - root - INFO - "statuses" table initialized.
 2019-01-02 15:08:55,160 - root - INFO - "jobs" table initialized.
 2019-01-02 15:08:55,160 - root - INFO - Complete database initialized.
+2019-01-02 15:14:05,477 - root - INFO - Database started.
+2019-01-02 15:14:05,587 - root - INFO - "users" table initialized.
+2019-01-02 15:14:05,608 - root - INFO - "skill_categories" table initialized.
+2019-01-02 15:14:05,608 - root - INFO - "skills" table initialized.
+2019-01-02 15:14:05,683 - root - INFO - "person_skills" table initialized.
+2019-01-02 15:14:05,684 - root - INFO - "statuses" table initialized.
+2019-01-02 15:14:05,694 - root - INFO - "jobs" table initialized.
+2019-01-02 15:14:05,694 - root - INFO - Complete database initialized.
+2019-01-02 15:14:05,761 - root - ERROR - 1062 (23000): Duplicate entry 'Ari' for key 'username'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ari' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 201, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ari' for key 'username'
+2019-01-02 15:14:05,907 - root - ERROR - 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Ilona' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 201, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Ilona' for key 'username'
+2019-01-02 15:14:05,959 - root - ERROR - 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Jeremy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 201, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Jeremy' for key 'username'
+2019-01-02 15:14:06,007 - root - ERROR - 1062 (23000): Duplicate entry 'Remy' for key 'username'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Remy' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 201, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Remy' for key 'username'
+2019-01-02 15:14:06,126 - root - ERROR - 1062 (23000): Duplicate entry 'Yair' for key 'username'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Yair' for key 'username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 201, in insert_user_details
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Yair' for key 'username'
+2019-01-02 15:14:07,479 - root - ERROR - 1062 (23000): Duplicate entry 'Available' for key 'status'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Available' for key 'status'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 181, in populate_statuses
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Available' for key 'status'
+2019-01-02 15:14:07,510 - root - ERROR - 1062 (23000): Duplicate entry 'Pending' for key 'status'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Pending' for key 'status'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 181, in populate_statuses
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Pending' for key 'status'
+2019-01-02 15:14:07,576 - root - ERROR - 1062 (23000): Duplicate entry 'Complete' for key 'status'
+Traceback (most recent call last):
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 392, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: Duplicate entry 'Complete' for key 'status'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yair/Documents/ITC/Hackathon/hackathon6/database_queries.py", line 181, in populate_statuses
+    cur.execute(the_query, insert_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/yair/anaconda3/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 395, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'Complete' for key 'status'
+2019-01-02 15:14:18,318 - root - INFO - Database started.
+2019-01-02 15:14:18,938 - root - INFO - "users" table initialized.
+2019-01-02 15:14:19,216 - root - INFO - "skill_categories" table initialized.
+2019-01-02 15:14:19,621 - root - INFO - "skills" table initialized.
+2019-01-02 15:14:20,075 - root - INFO - "person_skills" table initialized.
+2019-01-02 15:14:20,455 - root - INFO - "statuses" table initialized.
+2019-01-02 15:14:21,024 - root - INFO - "jobs" table initialized.
+2019-01-02 15:14:21,024 - root - INFO - Complete database initialized.
+2019-01-02 16:15:03,009 - root - INFO - Database started.
+2019-01-02 16:15:03,498 - root - INFO - "users" table initialized.
+2019-01-02 16:15:03,743 - root - INFO - "skill_categories" table initialized.
+2019-01-02 16:15:04,069 - root - INFO - "skills" table initialized.
+2019-01-02 16:15:04,481 - root - INFO - "person_skills" table initialized.
+2019-01-02 16:15:04,826 - root - INFO - "statuses" table initialized.
+2019-01-02 16:15:05,250 - root - INFO - "jobs" table initialized.
+2019-01-02 16:15:05,251 - root - INFO - Complete database initialized.
