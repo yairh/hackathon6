@@ -1,11 +1,12 @@
 import numpy as np
 
+
 def dummy_user_details():
-    details = [{'username': 'Ari', 'city': 'Tel Aviv'},
-               {'username': 'Ilona', 'city': 'Tel Aviv'},
-               {'username': 'Jeremy', 'city': 'Tel Aviv'},
-               {'username': 'Remy', 'city': 'Tel Aviv'},
-               {'username': 'Yair', 'city': 'Tel Aviv'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder'},
+               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -67,6 +68,7 @@ def dummy_person_skills():
                {'username': 'Yair', 'skill': 'Physics'}]
     for i in range(len(details)):
         yield details[i]
+
 
 def dummy_jobs():
     details = [{'username': 'Ari', 'skill': 'Self-help book provider'},
