@@ -10,7 +10,7 @@ def dummy_user_details():
 
 
 def dummy_skill_categories():
-    details = [{'skill_category': 'Coaching'},
+    details = [{'skill_category': 'Coaching', 'image': ''},
                {'skill_category': 'Tutoring'},
                {'skill_category': 'Home Repair'}]
     for i in range(len(details)):

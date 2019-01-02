@@ -1,0 +1,8 @@
+2019-01-02 13:38:13,952 - root - INFO - Database initialized.
+2019-01-02 13:38:14,007 - root - INFO - "users" table initialized.
+2019-01-02 13:38:14,016 - root - INFO - "skill_categories" table initialized.
+2019-01-02 13:38:14,029 - root - INFO - "skills" table initialized.
+2019-01-02 13:38:14,041 - root - INFO - "person_skills" table initialized.
+2019-01-02 13:38:14,049 - root - INFO - "job_status" table initialized.
+2019-01-02 13:38:14,066 - root - INFO - "available_jobs" table initialized.
+2019-01-02 13:38:14,081 - root - INFO - "pending_jobs" table initialized.

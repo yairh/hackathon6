@@ -33,11 +33,10 @@ def redirect_browse():
 @route('/browse/<order>')
 def browse(order):
     sectionTemplate = "./templates/browse.tpl"
-    sectionData = utils.getListOfShows()
+    # sectionData = utils.getListOfShows()
+    sectionData = utils.getListOfSkills()
     if order == 'name':
-        sectionData.sort(key=lambda x: x["name"], reverse=False)
-    elif order == 'ratings':
-        sectionData.sort(key=lambda x: x['rating']['average'], reverse=True)
+        sectionData.sort(key=lambda x: x[1], reverse=False)
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
 
 
@@ -88,6 +87,7 @@ def search():
 def post_search():
     sectionTemplate = "./templates/search_result.tpl"
     query = request.forms.get('q')
+    print(type(query))
     listOfShows = utils.getListOfShows()
     results = []
     for show in listOfShows:
