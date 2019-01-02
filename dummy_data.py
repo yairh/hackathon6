@@ -10,9 +10,22 @@ def dummy_user_details():
 
 
 def dummy_skill_categories():
-    details = [{'skill_category': 'Coaching', 'image': ''},
-               {'skill_category': 'Tutoring'},
-               {'skill_category': 'Home Repair'}]
+    details = [{'skill_category': 'Coaching', 'image': 'https://images.unsplash.com/photo-1512291313931-d4291048e7b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'},
+               {'skill_category': 'Builder', 'image':'https://i.imgur.com/JZRAKsX.jpg'},
+               {'skill_category': 'Gardener', 'image':'https://i.imgur.com/1brRN53.jpg'},
+               {'skill_category': 'Mechanic', 'image':'https://i.imgur.com/wXwUYku.jpg'},
+               {'skill_category': 'Mover', 'image': 'https://i.imgur.com/yHsNqQL.jpg'},
+               {'skill_category': 'Beauty Care', 'image': 'https://i.imgur.com/N39z4Eh.jpg'},
+               {'skill_category': 'Cooking', 'image': 'https://i.imgur.com/NbjQbsJ.jpg'},
+               {'skill_category': 'Computer', 'image': 'https://i.imgur.com/QTWApEe.jpg'},
+               {'skill_category': 'Cleaning', 'image': 'https://i.imgur.com/dJPwwln.jpg'},
+               {'skill_category': 'Tutoring', 'image': 'https://i.imgur.com/bvYF7QZ.jpg'},
+               {'skill_category': 'Plumber', 'image': 'https://i.imgur.com/P6TLN7H.jpg'},
+               {'skill_category': 'Electrician', 'image': 'https://i.imgur.com/eshLvdh.jpg'},
+               {'skill_category': 'Baby-sitter', 'image': 'https://i.imgur.com/oXbFh6M.jpg'},
+               {'skill_category': 'Dog-sitter', 'image': 'https://i.imgur.com/b1V0dO8.jpg'},
+               {'skill_category': 'Groceries', 'image': 'https://i.imgur.com/VzE4sCw.jpg'}
+               ]
     for i in range(len(details)):
         yield details[i]
 
