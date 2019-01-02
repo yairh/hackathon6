@@ -1,3 +1,4 @@
+import numpy as np
 
 def dummy_user_details():
     details = [{'username': 'Ari', 'city': 'Tel Aviv'},
@@ -68,3 +69,13 @@ def dummy_jobs():
                {'username': 'Ari', 'skill': 'Is Yair'}]
     for i in range(len(details)):
         yield details[i]
+
+
+def dummy_jobs_many(num_repeats):
+    people = ['Ari', 'Ilona', 'Jeremy', 'Remy', 'Yair']
+    people_w = [0.3, 0.2, 0.2, 0.2, 0.1]
+    skills = ['Mathematics', 'Physics', 'Electrician', 'Plumber', 'Self-help book provider', 'Is Yair', 'Professional Wizard']
+    skills_w = [0.05, 0.05, 0.15, 0.15, 0.1, 0.2, 0.3]
+
+    for i in range(num_repeats):
+        yield {'username': np.random.choice(people, size=1, p=people_w)[0], 'skill': np.random.choice(skills, size=1, p=skills_w)[0]}
