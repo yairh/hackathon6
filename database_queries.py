@@ -33,12 +33,25 @@ def make_tables(username, pw, prt, database):
     try:
         cur.execute(
             """
+            CREATE TABLE IF NOT EXISTS cities
+                (id int NOT NULL AUTO_INCREMENT,
+                city varchar(255) NOT NULL UNIQUE,
+                PRIMARY KEY (id)
+                )
+            """)
+
+        logging.info('"cities" table initialized.')
+
+        cur.execute(
+            """
             CREATE TABLE IF NOT EXISTS users
                 (id int NOT NULL AUTO_INCREMENT,
                 username varchar(255) NOT NULL UNIQUE,
+                city_id int NOT NULL,
                 wallet FLOAT NOT NULL DEFAULT 0,
                 joined DATETIME DEFAULT now(),
-                PRIMARY KEY (id)
+                PRIMARY KEY (id),
+                FOREIGN KEY (city_id) REFERENCES cities(id)
                 )
             """)
 
@@ -118,6 +131,30 @@ def make_tables(username, pw, prt, database):
         logging.exception(err)
     con.close()
 
+
+def populate_cities(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = [details['city']]
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
+        try:
+            the_query = """
+                INSERT INTO cities (
+                    city
+                ) VALUES (%s)
+                """
+
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
 def populate_skill_categories(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['skill_category'], details['image']]
 
@@ -168,6 +205,7 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
         logging.exception(err)
     con.close()
 
+
 def populate_statuses(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['status']]
 
@@ -188,16 +226,27 @@ def populate_statuses(details, username=username, pw=pw, prt=prt, database=datab
 
 
 def insert_user_details(details, username=username, pw=pw, prt=prt, database=database):
-    insert_string = [details['username']]
+    populate_cities(details)
 
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
+        cur.execute(
+            """
+            SELECT id
+            FROM cities
+            WHERE city='%s'
+            """ % (details['city'],))
+
+        the_city = cur.fetchall()
+
+        insert_string = [details['username'], the_city[0][0]]
 
         the_query = """
             INSERT INTO users (
-                username
-            ) VALUES (%s)
+                username,
+                city_id
+            ) VALUES (%s, %s)
             """
 
         cur.execute(the_query, insert_string)
@@ -295,11 +344,11 @@ def create_job(details, username=username, pw=pw, prt=prt, database=database):
 
 
 if __name__ == "__main__":
-    pass
+    # pass
     # create_databases()
     #
-    # import dummy_data
-    #
+    import dummy_data
+
     # for i in dummy_data.dummy_user_details():
     #     insert_user_details(i)
     #
