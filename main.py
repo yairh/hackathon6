@@ -2,7 +2,7 @@ import os
 from bottle import (get, post, redirect, request, route, run, static_file, error, template)
 import utils
 
-# Static Routes
+# Static Routes t
 
 
 @get("/js/<filepath:re:.*\.js>")

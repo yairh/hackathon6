@@ -1,13 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea
-css
-data
-images
-js
-pages
-templates
 conf.py
 hackathon.log
-requirements.txt
-runtime.txt
-utils.py
