@@ -102,6 +102,22 @@ def post_search():
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={}, query=query, results=results)
 
 
+@get('/profile')
+def get_profile():
+    sectionTemplate = "./templates/profile.tpl"
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@post('/profile')
+def update_profile():
+    sectionTemplate = "./templates/profile.tpl"
+    result = {
+        "name": request.forms.get("name"),
+        "skill": request.forms.get("skill"),
+        "city": request.forms.get("city")
+    }
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
 @error(404)
 def error404(error):
     sectionTemplate = "./templates/404.tpl"
