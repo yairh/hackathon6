@@ -42,6 +42,11 @@ for i in dummy_data.dummy_person_skills():
 for i in dummy_data.dummy_jobs():
     database_queries.create_job(i)
 
+if __name__ == "__main__":
+    import main
+    main.main()
+
+
 # code to generate dummy jobs
 # for i in dummy_data.dummy_jobs_many(100):
 #     database_queries.create_job(i)
