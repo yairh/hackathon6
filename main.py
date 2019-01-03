@@ -96,6 +96,7 @@ def main():
         skillers2 = []
         for subtuple in skillers:
             skillers2.append(list(subtuple))
+        print("good")
         print(skillers)
 
 
@@ -228,7 +229,8 @@ def main():
         except Exception as err:
             logging.exception(err)
         con.close()
-        return template("./templates/episode.tpl", result=result)
+        sectionTemplate = "./templates/skillerProfile.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result, sectionData=result)
 
 
     @get('/register')
@@ -247,6 +249,34 @@ def main():
         }
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
 
+    @get('/request')
+    def get_request_page():
+        sectionTemplate = "./templates/request.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+    @get('/ajax/request')
+    def get_request_page():
+        sectionTemplate = "./templates/request.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result={})
+
+    @post('/handshake')
+    def post_handshake():
+        result = {
+            "date": request.forms.get("date"),
+            "message": request.forms.get("message"),
+            "user": "Ilona",
+            "skill": "Mathematics",
+            "worker": "Yair"
+        }
+        print(result)
+        sectionTemplate = "./templates/myShareeces.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result, sectionData={})
+
+    @get('/shareeces')
+    def get_myshareeces_page():
+        sectionTemplate = "./templates/MyShareeces.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
 
     @error(404)
     def error404(error):
