@@ -1,8 +1,7 @@
-from classes import *
 import sys
 from workflow import *
 
-job_id = 1
+job_id = 13
 
 
 def job_demo(job_id):
@@ -10,8 +9,8 @@ def job_demo(job_id):
     print(job)
 
     # first handshake
-    confirm = input()
-    if confirm == 'N':
+    confirm = input('Please hit a key to agree, hit [n/N] to refuse: ')
+    if confirm == 'N' or confirm == 'n':
         print('Job stopped')
         sys.exit(0)
     else:
@@ -20,7 +19,7 @@ def job_demo(job_id):
         print('Job started ! Waiting for second agreement')
 
     # second handshake
-    confirm = input()
+    confirm = input('Please hit a key to agree, hit [n/N] to refuse: ')
     if confirm == 'N':
         print('Job stopped')
         sys.exit(0)
@@ -30,7 +29,7 @@ def job_demo(job_id):
         print('Job in Progress ! Agreement reached !')
 
     # Third hanshake
-    confirm = input()
+    confirm = input('Please hit a key to agree, hit [n/N] to refuse: ')
     if confirm == 'N':
         print('Job stopped')
         sys.exit(0)
@@ -40,7 +39,7 @@ def job_demo(job_id):
         print('Job finished ! Waiting for second agreement !')
 
     # Fourth handshake
-    confirm = input()
+    confirm = input('Please hit a key to agree, hit [n/N] to refuse: ')
     if confirm == 'N':
         print('Job stopped')
         sys.exit(0)
@@ -48,3 +47,6 @@ def job_demo(job_id):
         job.complete()
         print(job)
         print('Transaction Done ! Thank for using Shareece')
+
+
+job_demo(job_id)

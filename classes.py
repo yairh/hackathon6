@@ -64,9 +64,9 @@ def gift_card(giver_id, receiver_id, amount):
     Transaction(giver, receiver, amount).run()
 
 
-def loan(giver_id, receiver_id, amount):
-    giver = query_profile(giver_id)
-    receiver = query_profile(receiver_id)
+# def loan(giver_id, receiver_id, amount):
+#     giver = query_profile(giver_id)
+#     receiver = query_profile(receiver_id)
 
 
 class Profile:
@@ -79,10 +79,13 @@ class Profile:
     def __repr__(self):
         return 'Profile ------\nId: %s\nwealth: %dh' % (self.id, self.wealth)
 
-    def update_wallet(self, new_value):
+    def update_wallet(self, job_id, operation='+'):
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
         cur = cnx.cursor()
-        query = """update users set wallet= '{}' where id='{}';""".format(new_value, self.id)
+        query = """update users 
+                set wallet=({} {} (select minute(timediff(complete_time,start_time)) 
+                from jobs where id={}))
+                where id={};""".format(self.wealth, operation, job_id, self.id)
         cur.execute(query)
         cnx.commit()
         cnx.close()
@@ -90,19 +93,19 @@ class Profile:
 
 class Transaction:
 
-    def __init__(self, giver, receiver, amount):
+    def __init__(self, giver, receiver, job_id):
         self.giver = giver
         self.receiver = receiver
-        self.amount = amount
+        self.job_id = job_id
         self.status = 'Pending'
 
     def __repr__(self):
-        return 'Transaction Object\nGiver: %s\nReceiver: %s\nAmount: %d' % (
-            self.giver.id, self.receiver.id, self.amount)
+        return 'Transaction Object\nGiver: %s\nReceiver: %s\nJob_id: %d' % (
+            self.giver.id, self.receiver.id, self.job_id)
 
     def run(self):
-        self.giver.update_wallet(self.giver.wealth - self.amount)
-        self.receiver.update_wallet(self.receiver.wealth + self.amount)
+        self.giver.update_wallet(self.job_id, '-')
+        self.receiver.update_wallet(self.job_id, '+')
         self.status = 'Done'
 
 
@@ -130,24 +133,24 @@ class Job:
         self.update_status()
         self.update_time()
 
-    def finish(self, amount):
-        self.transaction = Transaction(self.applicant, self.worker, amount)
+    def finish(self):
         self.status = 'Finishing'
         self.update_status()
 
     def complete(self):
-        self.transaction.run()
         self.status = 'Complete'
-        self.time = 'complete'
+        self.time = 'complete_time'
         self.update_status()
         self.update_time()
+        Transaction(self.applicant, self.worker, self.id).run()
+
 
     def update_status(self):
         """update status to db"""
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
         cur = cnx.cursor()
-        query = """update jobs set status=(select id from statuses where status='{}' where id={});""".format(
-            self.status,self.id)
+        query = """update jobs set status=(select id from statuses where status='{}') where id={};""".format(
+            self.status, self.id)
         cur.execute(query)
         cnx.commit()
         cnx.close()
@@ -156,7 +159,7 @@ class Job:
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
         cur = cnx.cursor()
         query = """update jobs set {}=now() where id={};""".format(
-            self.time,self.id)
+            self.time, self.id)
         cur.execute(query)
         cnx.commit()
         cnx.close()
