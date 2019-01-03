@@ -30,7 +30,8 @@ def dummy_skill_categories():
                {'skill_category': 'Housework', 'image': 'https://i.imgur.com/1SQ5xhi.jpg'},
                {'skill_category': 'Events', 'image': 'https://i.imgur.com/M7wueNq.jpg'},
                {'skill_category': 'Art', 'image': 'https://i.imgur.com/6L6GTY0.jpg'},
-               {'skill_category': 'Carpool', 'image': 'https://i.imgur.com/6DmpCfh.jpg'}
+               {'skill_category': 'Carpool', 'image': 'https://i.imgur.com/6DmpCfh.jpg'},
+               {'skill_category': 'Others', 'image': 'https://i.imgur.com/zZohsqI.jpg'}
                ]
     for i in range(len(details)):
         yield details[i]
