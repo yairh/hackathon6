@@ -1,6 +1,5 @@
 from database_queries import *
 from classes import *
-from conf import username, pw, prt, database
 
 
 def new_user(user_dic):

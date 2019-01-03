@@ -12,7 +12,6 @@ def query_job(job_id):
         job_id)
     cur.execute(query)
     job = cur.fetchall()[0]
-    cnx.commit()
     cnx.close()
     return Job(job_id=job[0], applicant_id=job[1], worker_id=job[2], status=job[3])
 
@@ -21,15 +20,15 @@ def query_profile(user_id):
     """query and build Profile from db"""
     cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
     cur = cnx.cursor()
-    query = """select id, wallet from users where id='{}';""".format(user_id)
+    query = """select id, wallet from users where id={};""".format(user_id)
     cur.execute(query)
     profile = cur.fetchall()[0]
-    cnx.commit()
     cnx.close()
     return Profile(profile[0], profile[1])
 
 
 def update_worker(user_dic):
+    """update the worker status, and job status run after job query"""
     cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
     cur = cnx.cursor()
     query = """UPDATE jobs set worker_id = (select id from users where username='{}'),
@@ -38,6 +37,17 @@ def update_worker(user_dic):
     cur.execute(query)
     cnx.commit()
     cnx.close()
+
+
+def gift_card(giver_id, receiver_id, amount):
+    giver = query_profile(giver_id)
+    receiver = query_profile(receiver_id)
+    Transaction(giver, receiver, amount).run()
+
+
+def loan(giver_id, receiver_id, amount):
+    giver = query_profile(giver_id)
+    receiver = query_profile(receiver_id)
 
 
 class Profile:
