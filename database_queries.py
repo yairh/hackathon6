@@ -114,7 +114,7 @@ def make_tables(username, pw, prt, database):
             """
             CREATE TABLE IF NOT EXISTS skill_categories
                 (id int NOT NULL AUTO_INCREMENT,
-                skill_category varchar(255) NOT NULL,
+                skill_category varchar(255) NOT NULL UNIQUE,
                 image varchar(255) DEFAULT NULL,
                 PRIMARY KEY (id)
                 )
@@ -261,16 +261,22 @@ def populate_skill_categories(details, username=username, pw=pw, prt=prt, databa
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
+        try:
 
-        the_query = """
-            INSERT INTO skill_categories (
-                skill_category,
-                image
-            ) VALUES (%s, %s)
-            """
+            the_query = """
+                INSERT INTO skill_categories (
+                    skill_category,
+                    image
+                ) VALUES (%s, %s)
+                """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -280,27 +286,32 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
-        cur.execute(
-            """
-            SELECT id
-            FROM skill_categories
-            WHERE skill_category='%s'
-            """ % (details['skill_category'],))
+        try:
+            cur.execute(
+                """
+                SELECT id
+                FROM skill_categories
+                WHERE skill_category='%s'
+                """ % (details['skill_category'],))
 
-        result = cur.fetchall()
+            result = cur.fetchall()
 
-        insert_string = [result[0][0], details['skill'], details['image']]
+            insert_string = [result[0][0], details['skill'], details['image']]
 
-        the_query = """
-            INSERT INTO skills (
-                category,
-                skill,
-                image
-            ) VALUES (%s, %s, %s)
-            """
+            the_query = """
+                INSERT INTO skills (
+                    category,
+                    skill,
+                    image
+                ) VALUES (%s, %s, %s)
+                """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -312,14 +323,19 @@ def populate_statuses(details, username=username, pw=pw, prt=prt, database=datab
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
-        the_query = """
-            INSERT INTO statuses (
-                status
-            ) VALUES (%s)
-            """
+        try:
+            the_query = """
+                INSERT INTO statuses (
+                    status
+                ) VALUES (%s)
+                """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -350,14 +366,15 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
-        cur.execute(
-            """
-            SELECT id
-            FROM cities
-            WHERE city='%s'
-            """ % (details['city'],))
+        try:
+            cur.execute(
+                """
+                SELECT id
+                FROM cities
+                WHERE city='%s'
+                """ % (details['city'],))
 
-        the_city = cur.fetchall()
+            the_city = cur.fetchall()
 
         insert_string = [details['username'], details['image'], the_city[0][0]]
 
@@ -369,8 +386,13 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
             ) VALUES (%s, %s, %s)
             """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+
     except Exception as err:
         logging.exception(err)
     con.close()

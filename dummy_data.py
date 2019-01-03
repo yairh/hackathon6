@@ -27,8 +27,10 @@ def dummy_skill_categories():
                {'skill_category': 'Baby-sitter', 'image': 'https://i.imgur.com/oXbFh6M.jpg'},
                {'skill_category': 'Dog-sitter', 'image': 'https://i.imgur.com/b1V0dO8.jpg'},
                {'skill_category': 'Groceries', 'image': 'https://i.imgur.com/VzE4sCw.jpg'},
-               {'skill_category': 'Home Repair', 'image': ''},
-               {'skill_category': 'Being Yair', 'image': ''}
+               {'skill_category': 'Housework', 'image': 'https://i.imgur.com/1SQ5xhi.jpg'},
+               {'skill_category': 'Events', 'image': 'https://i.imgur.com/M7wueNq.jpg'},
+               {'skill_category': 'Art', 'image': 'https://i.imgur.com/6L6GTY0.jpg'},
+               {'skill_category': 'Carpool', 'image': 'https://i.imgur.com/6DmpCfh.jpg'}
                ]
     for i in range(len(details)):
         yield details[i]
@@ -37,11 +39,12 @@ def dummy_skill_categories():
 def dummy_skills():
     details = [{'skill': 'Mathematics', 'skill_category': 'Tutoring', 'image': 'placeholder'},
                {'skill': 'Physics', 'skill_category': 'Tutoring', 'image': 'placeholder'},
-               {'skill': 'Electrician', 'skill_category': 'Home Repair', 'image': 'placeholder'},
-               {'skill': 'Plumber', 'skill_category': 'Home Repair', 'image': 'placeholder'},
+               {'skill': 'Electrician', 'skill_category': 'Housework', 'image': 'placeholder'},
+               {'skill': 'Plumber', 'skill_category': 'Housework', 'image': 'placeholder'},
                {'skill': 'Self-help book provider', 'skill_category': 'Coaching', 'image': 'placeholder'},
-               {'skill': 'Is Yair', 'skill_category': 'Being Yair', 'image': 'placeholder'},
-               {'skill': 'Professional Wizard', 'skill_category': 'Being Yair', 'image': 'placeholder'}]
+               {'skill': 'Is Yair', 'skill_category': 'Events', 'image': 'placeholder'},
+               {'skill': 'Professional Wizard', 'skill_category': 'Events', 'image': 'placeholder'},
+               {'skill': 'Is Ilona', 'skill_category': 'Art', 'image': 'placeholder'}]
     for i in range(len(details)):
         yield details[i]
 
