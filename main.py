@@ -96,8 +96,6 @@ def main():
         skillers2 = []
         for subtuple in skillers:
             skillers2.append(list(subtuple))
-        print("good")
-        print(skillers)
 
 
         sectionTemplate = "./templates/episode.tpl"
@@ -107,7 +105,6 @@ def main():
     @route('/ajax/show/<catid>/episode/<skillid>')
     def browse_show_core_ajax(catid, skillid):
         skillers, nameOfSkill = browse_show_backend(catid, skillid)
-        print(skillers)
         return template("./templates/episode.tpl", result=skillers, nameOfSkill=nameOfSkill)
 
     def browse_show_backend(catid, skillid):
@@ -125,7 +122,6 @@ def main():
 
             skillers = cur.fetchall()
             skillers = list(skillers)
-            print(skillers)
 
             cur.execute(
                 """
@@ -136,7 +132,6 @@ def main():
 
             nameOfSkill = cur.fetchone()[0]
 
-            print(nameOfSkill)
 
         except Exception as err:
             logging.exception(err)
@@ -201,7 +196,6 @@ def main():
                 """ % (userid,))
 
             result = cur.fetchone()
-            print(result)
 
         except Exception as err:
             logging.exception(err)
@@ -230,7 +224,6 @@ def main():
                 """ % (userid,))
 
             result = cur.fetchone()
-            print(result)
 
         except Exception as err:
             logging.exception(err)
@@ -276,7 +269,6 @@ def main():
             "worker_name": "Yair"
         }
         workflow.new_job(result)
-        print(result)
         sectionTemplate = "./templates/myShareeces.tpl"
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result, sectionData={})
 
@@ -312,7 +304,6 @@ def main():
 
     @get('/shareecees')
     def get_myshareeces_page():
-        print("tripp")
         workflow.handshake(13)
         sectionTemplate = "./templates/MyShareeces.tpl"
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result={}, sectionData={})
