@@ -162,18 +162,24 @@ def main():
     @get('/profile')
     def get_profile():
         sectionTemplate = "./templates/profile.tpl"
-        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+        cur = con.cursor()
+        try:
+            cur.execute(
+                """
+                SELECT wallet
+                FROM users 
+                where users.id = %s
+                """ % (2,))
 
+            balance = cur.fetchone()[0]
+            balance = int(balance)
 
-    @post('/profile')
-    def update_profile():
-        sectionTemplate = "./templates/profile.tpl"
-        result = {
-            "name": request.forms.get("name"),
-            "skill": request.forms.get("skill"),
-            "city": request.forms.get("city")
-        }
-        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+        except Exception as err:
+            logging.exception(err)
+        con.close()
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, balance=balance, sectionData={})
+
 
     @get('/profile/<userid>')
     def get_skiller_profile(userid):
@@ -286,23 +292,30 @@ def main():
 
             cur.execute(
                 """
-                SELECT t1.username, t2.skill
+                SELECT t1.username, t2.skill, jobs.id
                 FROM jobs
                 JOIN users as t1
                 ON jobs.worker_id=t1.id
                 JOIN skills as t2
                 ON jobs.skill_id=t2.id
                 WHERE jobs.user_id=%s
+                AND jobs.worker_id is not NULL
                 """ % (userid,))
 
-            result = cur.fetchall()
+            result = cur.fetchone()
 
-            # print(result)
 
         except Exception as err:
             logging.exception(err)
         con.close()
-        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result[2], sectionData={})
+
+    @get('/shareecees')
+    def get_myshareeces_page():
+        print("tripp")
+        workflow.handshake(13)
+        sectionTemplate = "./templates/MyShareeces.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result={}, sectionData={})
 
 
     @error(404)

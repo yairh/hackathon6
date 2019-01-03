@@ -20,9 +20,9 @@ def new_job(job_dic):
     update_worker(job_dic)
 
 
-def handshake(shake_dic):
-
-    job = query_job(shake_dic['job_id'])
+def handshake(job_id):
+    print("fct running")
+    job = query_job(job_id)
     if job.status == 'Pending':
         job.start()
     elif job.status == 'Starting':

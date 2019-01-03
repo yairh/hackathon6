@@ -4,7 +4,7 @@
 <div>{{result[1]}}</div>
 <div>{{result[2]}}</div>
 <div>
-    Hey there! Will be happy to help with your issues regarding THIS TOPIC. <br />
+    Hey there! Will be happy to help with your issues regarding Mathematics. <br />
     Feel free to contact me anytime!
 </div>
 
