@@ -264,7 +264,7 @@ def main():
         result = {
             "date": request.forms.get("date"),
             "message": request.forms.get("message"),
-            "user": "Philippe",
+            "user": "Ilona",
             "skill": "Mathematics",
             "worker": "Yair"
         }
