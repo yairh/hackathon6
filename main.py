@@ -96,6 +96,7 @@ def main():
         skillers2 = []
         for subtuple in skillers:
             skillers2.append(list(subtuple))
+        print("good")
         print(skillers)
 
 
@@ -272,6 +273,10 @@ def main():
         sectionTemplate = "./templates/myShareeces.tpl"
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result, sectionData={})
 
+    @get('/shareeces')
+    def get_myshareeces_page():
+        sectionTemplate = "./templates/MyShareeces.tpl"
+        return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
 
     @error(404)
     def error404(error):
