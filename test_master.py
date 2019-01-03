@@ -24,8 +24,23 @@ database_queries.create_databases()
 
 import dummy_data
 
+for i in dummy_data.dummy_languages():
+    database_queries.populate_languages(i)
+
+for i in dummy_data.dummy_hobbies():
+    database_queries.populate_hobbies(i)
+
 for i in dummy_data.dummy_user_details():
     database_queries.insert_user_details(i)
+
+for i in dummy_data.dummy_user_details():
+    database_queries.insert_hobby(i)
+
+for i in dummy_data.dummy_user_details():
+    database_queries.insert_language(i)
+
+for i in dummy_data.dummy_user_details():
+    database_queries.update_age(i)
 
 for i in dummy_data.dummy_skill_categories():
     database_queries.populate_skill_categories(i)
@@ -41,6 +56,11 @@ for i in dummy_data.dummy_person_skills():
 
 for i in dummy_data.dummy_jobs():
     database_queries.create_job(i)
+
+if __name__ == "__main__":
+    import main
+    main.main()
+
 
 # code to generate dummy jobs
 # for i in dummy_data.dummy_jobs_many(100):

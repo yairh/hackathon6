@@ -17,9 +17,7 @@ def new_skill(user_dic):
 
 def new_job(job_dic):
     create_job(job_dic)
-    print('New job created !')
-    update_worker(job_dic['worker_name'])
-    print('Job Status is: Pending')
+    update_worker(job_dic)
 
 
 def handshake(shake_dic):

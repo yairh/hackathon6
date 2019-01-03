@@ -44,11 +44,34 @@ def make_tables(username, pw, prt, database):
 
         cur.execute(
             """
+            CREATE TABLE IF NOT EXISTS available_hobbies
+                (id int NOT NULL AUTO_INCREMENT,
+                hobby varchar(255) NOT NULL UNIQUE,
+                PRIMARY KEY (id)
+                )
+            """)
+
+        logging.info('"available_hobbies" table initialized.')
+
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS available_languages
+                (id int NOT NULL AUTO_INCREMENT,
+                language varchar(255) NOT NULL UNIQUE,
+                PRIMARY KEY (id)
+                )
+            """)
+
+        logging.info('"available_languages" table initialized.')
+
+        cur.execute(
+            """
             CREATE TABLE IF NOT EXISTS users
                 (id int NOT NULL AUTO_INCREMENT,
                 username varchar(255) NOT NULL UNIQUE,
                 image varchar(255),
                 city_id int NOT NULL,
+                age int DEFAULT NULL,
                 wallet FLOAT NOT NULL DEFAULT 0,
                 joined DATETIME DEFAULT now(),
                 PRIMARY KEY (id),
@@ -60,9 +83,38 @@ def make_tables(username, pw, prt, database):
 
         cur.execute(
             """
+            CREATE TABLE IF NOT EXISTS hobbies
+                (id int NOT NULL AUTO_INCREMENT,
+                user_id int NOT NULL,
+                hobby_id int NOT NULL,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (hobby_id) REFERENCES available_hobbies(id)
+                )
+            """)
+
+        logging.info('"hobbies" table initialized.')
+
+
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS languages
+                (id int NOT NULL AUTO_INCREMENT,
+                user_id int NOT NULL,
+                language_id int NOT NULL,
+                PRIMARY KEY (id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (language_id) REFERENCES available_languages(id)
+                )
+            """)
+
+        logging.info('"languages" table initialized.')
+
+        cur.execute(
+            """
             CREATE TABLE IF NOT EXISTS skill_categories
                 (id int NOT NULL AUTO_INCREMENT,
-                skill_category varchar(255) NOT NULL,
+                skill_category varchar(255) NOT NULL UNIQUE,
                 image varchar(255) DEFAULT NULL,
                 PRIMARY KEY (id)
                 )
@@ -157,22 +209,74 @@ def populate_cities(details, username=username, pw=pw, prt=prt, database=databas
     con.close()
 
 
+def populate_hobbies(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = [details['hobby']]
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
+        try:
+            the_query = """
+                INSERT INTO available_hobbies (
+                    hobby
+                ) VALUES (%s)
+                """
+
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def populate_languages(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = [details['language']]
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
+        try:
+            the_query = """
+                INSERT INTO available_languages (
+                    language
+                ) VALUES (%s)
+                """
+
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
 def populate_skill_categories(details, username=username, pw=pw, prt=prt, database=database):
     insert_string = [details['skill_category'], details['image']]
 
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
+        try:
 
-        the_query = """
-            INSERT INTO skill_categories (
-                skill_category,
-                image
-            ) VALUES (%s, %s)
-            """
+            the_query = """
+                INSERT INTO skill_categories (
+                    skill_category,
+                    image
+                ) VALUES (%s, %s)
+                """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -182,27 +286,32 @@ def populate_skills(details, username=username, pw=pw, prt=prt, database=databas
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
-        cur.execute(
-            """
-            SELECT id
-            FROM skill_categories
-            WHERE skill_category='%s'
-            """ % (details['skill_category'],))
+        try:
+            cur.execute(
+                """
+                SELECT id
+                FROM skill_categories
+                WHERE skill_category='%s'
+                """ % (details['skill_category'],))
 
-        result = cur.fetchall()
+            result = cur.fetchall()
 
-        insert_string = [result[0][0], details['skill'], details['image']]
+            insert_string = [result[0][0], details['skill'], details['image']]
 
-        the_query = """
-            INSERT INTO skills (
-                category,
-                skill,
-                image
-            ) VALUES (%s, %s, %s)
-            """
+            the_query = """
+                INSERT INTO skills (
+                    category,
+                    skill,
+                    image
+                ) VALUES (%s, %s, %s)
+                """
 
-        cur.execute(the_query, insert_string)
-        con.commit()
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
     except Exception as err:
         logging.exception(err)
     con.close()
@@ -214,8 +323,32 @@ def populate_statuses(details, username=username, pw=pw, prt=prt, database=datab
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
+        try:
+            the_query = """
+                INSERT INTO statuses (
+                    status
+                ) VALUES (%s)
+                """
+
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def populate_single_master(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = list(*details.items())
+
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
         the_query = """
-            INSERT INTO statuses (
+            INSERT INTO %s (
                 status
             ) VALUES (%s)
             """
@@ -233,23 +366,49 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
     cur = con.cursor()
     try:
-        cur.execute(
-            """
-            SELECT id
-            FROM cities
-            WHERE city='%s'
-            """ % (details['city'],))
+        try:
+            cur.execute(
+                """
+                SELECT id
+                FROM cities
+                WHERE city='%s'
+                """ % (details['city'],))
 
-        the_city = cur.fetchall()
+            the_city = cur.fetchall()
 
-        insert_string = [details['username'], details['image'], the_city[0][0]]
+            insert_string = [details['username'], details['image'], the_city[0][0]]
+
+            the_query = """
+                INSERT INTO users (
+                    username,
+                    image,
+                    city_id
+                ) VALUES (%s, %s, %s)
+                """
+
+            cur.execute(the_query, insert_string)
+            con.commit()
+        except mysql.connector.IntegrityError as err:
+            # 1062 is raised when there is an attempt to perform a duplicate entry into a column with a unique flag
+            if not err.errno == 1062:
+                raise
+
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def update_age(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = [details['age'], details['username']]
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
+
 
         the_query = """
-            INSERT INTO users (
-                username,
-                image,
-                city_id
-            ) VALUES (%s, %s, %s)
+            UPDATE users
+            SET age=%s
+            WHERE username=%s
             """
 
         cur.execute(the_query, insert_string)
@@ -257,6 +416,7 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
     except Exception as err:
         logging.exception(err)
     con.close()
+
 
 def insert_person_skills(details, username=username, pw=pw, prt=prt, database=database):
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
@@ -296,6 +456,83 @@ def insert_person_skills(details, username=username, pw=pw, prt=prt, database=da
         logging.exception(err)
     con.close()
 
+
+def insert_language(details, username=username, pw=pw, prt=prt, database=database):
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+
+    cur = con.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT id
+            FROM users
+            WHERE username='%s'
+            """ % (details['username'],))
+
+        the_username = cur.fetchall()
+
+        cur.execute(
+            """
+            SELECT id
+            FROM available_languages
+            WHERE language='%s'
+            """ % (details['language'],))
+
+        the_language = cur.fetchall()
+
+        insert_string = [the_username[0][0], the_language[0][0]]
+
+        the_query = """
+            INSERT INTO languages (
+                user_id,
+                language_id
+            ) VALUES (%s, %s)
+            """
+
+        cur.execute(the_query, insert_string)
+        con.commit()
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def insert_hobby(details, username=username, pw=pw, prt=prt, database=database):
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+
+    cur = con.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT id
+            FROM users
+            WHERE username='%s'
+            """ % (details['username'],))
+
+        the_username = cur.fetchall()
+
+        cur.execute(
+            """
+            SELECT id
+            FROM available_hobbies
+            WHERE hobby='%s'
+            """ % (details['hobby'],))
+
+        the_language = cur.fetchall()
+
+        insert_string = [the_username[0][0], the_language[0][0]]
+
+        the_query = """
+            INSERT INTO hobbies (
+                user_id,
+                hobby_id
+            ) VALUES (%s, %s)
+            """
+
+        cur.execute(the_query, insert_string)
+        con.commit()
+    except Exception as err:
+        logging.exception(err)
+    con.close()
 
 def create_job(details, username=username, pw=pw, prt=prt, database=database):
     con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)

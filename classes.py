@@ -31,12 +31,31 @@ def update_worker(user_dic):
     """update the worker status, and job status run after job query"""
     cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
     cur = cnx.cursor()
-    query = """UPDATE jobs set worker_id = (select id from users where username='{}'),
-            status=(select id from statuses where status='Pending');""".format(
-        user_dic['username'])
-    cur.execute(query)
+
+    query = """
+        SELECT id
+        FROM jobs
+        WHERE user_id=(select id from users where username=%s)
+        AND skill_id=(select id from skills where skill=%s)
+        AND status=(select id from statuses where status='Available')
+        LIMIT 1
+        """
+
+    cur.execute(query, [user_dic['username'], user_dic['skill']])
+
+    the_id = cur.fetchall()
+
+    query = """
+                UPDATE jobs
+                set worker_id=(select id from users where username=%s),
+                status=(select id from statuses where status='Pending')
+                WHERE id=%s"""
+
+    cur.execute(query, [user_dic['worker_name'], the_id[0][0]])
     cnx.commit()
     cnx.close()
+
+    ## this wont work without specifying or selecting the job id
 
 
 def gift_card(giver_id, receiver_id, amount):

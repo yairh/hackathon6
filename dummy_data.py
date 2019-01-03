@@ -2,11 +2,11 @@ import numpy as np
 
 
 def dummy_user_details():
-    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'English', 'hobby': 'Daydreaming', 'age': '1000'},
+               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
+               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'},
+               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -27,8 +27,10 @@ def dummy_skill_categories():
                {'skill_category': 'Baby-sitter', 'image': 'https://i.imgur.com/oXbFh6M.jpg'},
                {'skill_category': 'Dog-sitter', 'image': 'https://i.imgur.com/b1V0dO8.jpg'},
                {'skill_category': 'Groceries', 'image': 'https://i.imgur.com/VzE4sCw.jpg'},
-               {'skill_category': 'Home Repair', 'image': ''},
-               {'skill_category': 'Being Yair', 'image': ''}
+               {'skill_category': 'Housework', 'image': 'https://i.imgur.com/1SQ5xhi.jpg'},
+               {'skill_category': 'Events', 'image': 'https://i.imgur.com/M7wueNq.jpg'},
+               {'skill_category': 'Art', 'image': 'https://i.imgur.com/6L6GTY0.jpg'},
+               {'skill_category': 'Carpool', 'image': 'https://i.imgur.com/6DmpCfh.jpg'}
                ]
     for i in range(len(details)):
         yield details[i]
@@ -37,11 +39,12 @@ def dummy_skill_categories():
 def dummy_skills():
     details = [{'skill': 'Mathematics', 'skill_category': 'Tutoring', 'image': 'placeholder'},
                {'skill': 'Physics', 'skill_category': 'Tutoring', 'image': 'placeholder'},
-               {'skill': 'Electrician', 'skill_category': 'Home Repair', 'image': 'placeholder'},
-               {'skill': 'Plumber', 'skill_category': 'Home Repair', 'image': 'placeholder'},
+               {'skill': 'Electrician', 'skill_category': 'Housework', 'image': 'placeholder'},
+               {'skill': 'Plumber', 'skill_category': 'Housework', 'image': 'placeholder'},
                {'skill': 'Self-help book provider', 'skill_category': 'Coaching', 'image': 'placeholder'},
-               {'skill': 'Is Yair', 'skill_category': 'Being Yair', 'image': 'placeholder'},
-               {'skill': 'Professional Wizard', 'skill_category': 'Being Yair', 'image': 'placeholder'}]
+               {'skill': 'Is Yair', 'skill_category': 'Events', 'image': 'placeholder'},
+               {'skill': 'Professional Wizard', 'skill_category': 'Events', 'image': 'placeholder'},
+               {'skill': 'Is Ilona', 'skill_category': 'Art', 'image': 'placeholder'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -53,6 +56,28 @@ def dummy_statuses():
                {'status': 'In Progress'},
                {'status': 'Finishing'},
                {'status': 'Complete'}]
+    for i in range(len(details)):
+        yield details[i]
+
+
+def dummy_languages():
+    details = [{'language': 'English'},
+               {'language': 'French'},
+               {'language': 'Hebrew'},
+               {'language': 'Spanish'},
+               {'language': 'German'},
+               {'language': 'Italian'}]
+    for i in range(len(details)):
+        yield details[i]
+
+
+def dummy_hobbies():
+    details = [{'hobby': 'Daydreaming'},
+               {'hobby': 'Football'},
+               {'hobby': 'Basketball'},
+               {'hobby': 'Tennis'},
+               {'hobby': 'Piano'},
+               {'hobby': 'Rugby'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -98,3 +123,5 @@ def dummy_jobs_many(num_repeats):
 
     for i in range(num_repeats):
         yield {'username': np.random.choice(people, size=1, p=people_w)[0], 'skill': np.random.choice(skills, size=1, p=skills_w)[0]}
+
+
