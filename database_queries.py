@@ -376,15 +376,15 @@ def insert_user_details(details, username=username, pw=pw, prt=prt, database=dat
 
             the_city = cur.fetchall()
 
-        insert_string = [details['username'], details['image'], the_city[0][0]]
+            insert_string = [details['username'], details['image'], the_city[0][0]]
 
-        the_query = """
-            INSERT INTO users (
-                username,
-                image,
-                city_id
-            ) VALUES (%s, %s, %s)
-            """
+            the_query = """
+                INSERT INTO users (
+                    username,
+                    image,
+                    city_id
+                ) VALUES (%s, %s, %s)
+                """
 
             cur.execute(the_query, insert_string)
             con.commit()
