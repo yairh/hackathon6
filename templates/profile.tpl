@@ -1,17 +1,19 @@
 <div class="profile">
     <h1>My profile</h1>
     <form method="post" action="/profile">
-    <p class="profile-label">Username</p>
-    <p>Ilona</p>
-    <p class="profile-label">My balance</p>
-    <p>XXX</p>
+    <label>Username</label></br>
+    <input class="name-field" name="name" type="text" />
     <br />
-    <p class="profile-label">My skill</p>
-    <p>Physics Tutoring</p>
+    </br>
+    <label>Your skill</label></br>
+    <input class="skill-field" name="skill" type="text" />
     <br />
-    <p class="profile-label">City</p>
-    <p>Tel Aviv</p>
+    </br>
+    <label>City</label></br>
+    <input class="city-field" name="city" type="text" />
     <br />
-
+    </br>
+    <input class="clickable search-btn shadowed" type="submit" value="edit" />
 </form>
 </div>
+

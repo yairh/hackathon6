@@ -1,7 +1,8 @@
 html, body{
-    margin:0px;
+    margin:0px auto;
     font-family: 'Oxygen', sans-serif;;
     overflow: hidden;
+    width:100%;
 }
 .about{
     line-height: 20px;
@@ -56,6 +57,14 @@ html, body{
     display:flex;
     background-color: white;
     color:black;
+    justify-content: space-between;
+    
+}
+.footer{
+    display:flex;
+    background-color: white;
+    color:black;
+    justify-content: center;
     
 }
 .flex-container > div {
@@ -66,10 +75,13 @@ html, body{
     width: 300px;
     margin: 30px;
 }
+.container{
+    display: flex;
+    justify-content: space-around;
+}
 .flex-box{
-    display:flex; 
     color:black;
-    flex-direction:column;
+   
 }
 .logo {
     padding: 15px;
@@ -82,43 +94,53 @@ html, body{
     margin: 10px;
     padding: 20px;
     font-family: 'Oxygen', sans-serif;
+    font-size:14px;
 }
 .flex-box > .img{
     background-image: url(/images/reb.jpg);
-    height:200px;
-    width:200px;
+    height:180px;
+    width:160px;
     background-size:cover;
     background-position: center;
+    border: solid 5x #f1f1f1;
+    border-radius:50%;
 
 }
 .flex-box2{
-    display:flex;   
+  
     color:black;
-    flex-direction:column;
+
 }
 .flex-box2 > div {   
     margin: 10px;
     padding: 20px;
     font-family: 'Oxygen', sans-serif;
+    font-size:14px;
 }
 .flex-box2 > .img2{
     background-image: url(/images/oren.jpg);
-    height:200px;
-    width:200px;
+    height:180px;
+    width:160px;
     background-size:cover;
     background-position: center;
+    border: solid 5x #f1f1f1;
+    border-radius:50%;
 
 }
 .annonce{
-    color:black;
-    background-image: url(/images/phone.jpg);
-    width:100%;
+    color:rgb(255, 183, 27);
+    font-family: 'Oswald', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    /* color:black; */
+    /* background-image: url(/images/phone2.jpg); */
+    /* width:100%;
     height:400px;
     opacity: 0.7;
     filter: alpha(opacity=50);
     background-size:cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
     
 }
 a{
@@ -160,6 +182,12 @@ header{
     height:90px;
     font-size:bold;
 }
+.footer{
+    width:100%;
+    height:115px;
+    background-color: #f1f1f1;
+
+}
 
 header nav{
     color: black;
@@ -190,6 +218,7 @@ section{
     text-align: left;
     padding: 20px;
     color:black;
+    margin:35px;
 }
 
 section h1{
@@ -204,16 +233,19 @@ section h2{
     font-size: 30px;
     font-family: 'Oxygen', sans-serif;
     text-align: center;
+    margin:20px;
     
 }
-
-section p{
-    max-width: 50%;
-}
-
 .logo{
     width: 100px;
     height:115px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 20px;
+}
+.social{
+    width: 40px;
+    height:40px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     padding: 20px;
@@ -256,6 +288,11 @@ BROWSE
 .browse{
     display:flex;
     flex-wrap: wrap;
+}
+label{
+    font-size:bold;
+
+
 }
 
 .browse article{
@@ -300,6 +337,13 @@ BROWSE
     margin-right:4px;
 }
 
+.marginL {
+    margin-left:500px;
+}
+
+.marginR {
+    margin-right:500px;
+}
 /*************************************
 
 SHOW
