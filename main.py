@@ -203,6 +203,34 @@ def main():
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=result, result=result)
 
 
+    @get('/ajax/profile/<userid>')
+    def get_skiller_profile_ajax(userid):
+        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+        cur = con.cursor()
+        try:
+            cur.execute(
+                """
+                SELECT username, city, skill
+                FROM users 
+                JOIN cities 
+                ON users.city_id = cities.id
+                JOIN person_skills 
+                ON users.id = person_skills.user_id 
+                join skills 
+                on person_skills.skill_id = skills.id
+                where users.id = %s
+                limit 1;
+                """ % (userid,))
+
+            result = cur.fetchone()
+            print(result)
+
+        except Exception as err:
+            logging.exception(err)
+        con.close()
+        return template("./templates/episode.tpl", result=result)
+
+
     @get('/register')
     def get_register_page():
         sectionTemplate = "./templates/register.tpl"

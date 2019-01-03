@@ -42,6 +42,9 @@ for i in dummy_data.dummy_user_details():
 for i in dummy_data.dummy_user_details():
     database_queries.update_age(i)
 
+for i in dummy_data.dummy_user_details():
+    database_queries.update_children(i)
+
 for i in dummy_data.dummy_skill_categories():
     database_queries.populate_skill_categories(i)
 

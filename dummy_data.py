@@ -2,11 +2,11 @@ import numpy as np
 
 
 def dummy_user_details():
-    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'English', 'hobby': 'Daydreaming', 'age': '1000'},
-               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
-               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
-               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'},
-               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'English', 'hobby': 'Daydreaming', 'age': '1000', 'children': '0'},
+               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25', 'children': '0'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25', 'children': '0'},
+               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25', 'children': '0'},
+               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25', 'children': '0'}]
     for i in range(len(details)):
         yield details[i]
 

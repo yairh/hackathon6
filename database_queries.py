@@ -72,6 +72,7 @@ def make_tables(username, pw, prt, database):
                 image varchar(255),
                 city_id int NOT NULL,
                 age int DEFAULT NULL,
+                children int DEFAULT NULL,
                 wallet FLOAT NOT NULL DEFAULT 0,
                 joined DATETIME DEFAULT now(),
                 PRIMARY KEY (id),
@@ -408,6 +409,26 @@ def update_age(details, username=username, pw=pw, prt=prt, database=database):
         the_query = """
             UPDATE users
             SET age=%s
+            WHERE username=%s
+            """
+
+        cur.execute(the_query, insert_string)
+        con.commit()
+    except Exception as err:
+        logging.exception(err)
+    con.close()
+
+
+def update_children(details, username=username, pw=pw, prt=prt, database=database):
+    insert_string = [details['children'], details['username']]
+    con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+    cur = con.cursor()
+    try:
+
+
+        the_query = """
+            UPDATE users
+            SET children=%s
             WHERE username=%s
             """
 

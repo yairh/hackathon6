@@ -19,6 +19,9 @@ window.onpopstate = function(event) {
         case "episode":
           Browse.loadEpisode(event.state.showId, event.state.episodeId, false);
           break;
+        case "profile":
+          Browse.loadProfile(event.state.profileid, false);
+          break;
       }
     }else{
       console.log("what?", event)
@@ -51,3 +54,7 @@ Browse.loadShow = function(showid, updateHistory = true){
 Browse.loadEpisode = function(showid, episodeid, updateHistory = true){
   Browse.loadContent(`/show/${showid}/episode/${episodeid}`,updateHistory, {"stateType":"episode", "showId":showid, "episodeId":episodeid});
 }
+
+//Browse.loadProfile = function(profileid, updateHistory = true) {
+//    Browse.loadContent(`/profile/${profileid}`,updateHistory);
+//}
