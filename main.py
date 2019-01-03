@@ -286,37 +286,18 @@ def main():
 
             cur.execute(
                 """
-                SELECT username, city, skill
-                FROM users 
-                JOIN jobs 
-                ON users.id = jobs.worker_id
-                JOIN skill  
-                ON users.id = person_skills.user_id 
-                join skills 
-                on person_skills.skill_id = skills.id
-                where users.id = %s
-                limit 1;
+                SELECT t1.username, t2.skill
+                FROM jobs
+                JOIN users as t1
+                ON jobs.worker_id=t1.id
+                JOIN skills as t2
+                ON jobs.skill_id=t2.id
+                WHERE jobs.user_id=%s
                 """ % (userid,))
 
             result = cur.fetchall()
 
-
-            cur.execute(
-                """
-                SELECT username, city, skill
-                FROM users 
-                JOIN jobs 
-                ON users.id = jobs.worker_id
-                JOIN skill  
-                ON users.id = person_skills.user_id 
-                join skills 
-                on person_skills.skill_id = skills.id
-                where users.id = %s
-                limit 1;
-                """ % (userid,))
-
-            result = cur.fetchall()
-            print(result)
+            # print(result)
 
         except Exception as err:
             logging.exception(err)
