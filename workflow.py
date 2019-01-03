@@ -18,7 +18,7 @@ def new_skill(user_dic):
 
 def new_job(job_dic):
     create_job(job_dic)
-    update_worker(job_dic['worker_name'])
+    update_worker(job_dic)
 
 
 def handshake(shake_dic):

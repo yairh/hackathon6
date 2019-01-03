@@ -2,11 +2,11 @@ import numpy as np
 
 
 def dummy_user_details():
-    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder'},
-               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder'}]
+    details = [{'username': 'Ari', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'English', 'hobby': 'Daydreaming', 'age': '1000'},
+               {'username': 'Ilona', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
+               {'username': 'Jeremy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Football', 'age': '25'},
+               {'username': 'Remy', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'},
+               {'username': 'Yair', 'city': 'Tel Aviv', 'image': 'placeholder', 'language': 'French', 'hobby': 'Piano', 'age': '25'}]
     for i in range(len(details)):
         yield details[i]
 
@@ -57,6 +57,28 @@ def dummy_statuses():
         yield details[i]
 
 
+def dummy_languages():
+    details = [{'language': 'English'},
+               {'language': 'French'},
+               {'language': 'Hebrew'},
+               {'language': 'Spanish'},
+               {'language': 'German'},
+               {'language': 'Italian'}]
+    for i in range(len(details)):
+        yield details[i]
+
+
+def dummy_hobbies():
+    details = [{'hobby': 'Daydreaming'},
+               {'hobby': 'Football'},
+               {'hobby': 'Basketball'},
+               {'hobby': 'Tennis'},
+               {'hobby': 'Piano'},
+               {'hobby': 'Rugby'}]
+    for i in range(len(details)):
+        yield details[i]
+
+
 def dummy_person_skills():
     details = [{'username': 'Yair', 'skill': 'Self-help book provider'},
                {'username': 'Yair', 'skill': 'Is Yair'},
@@ -98,3 +120,5 @@ def dummy_jobs_many(num_repeats):
 
     for i in range(num_repeats):
         yield {'username': np.random.choice(people, size=1, p=people_w)[0], 'skill': np.random.choice(skills, size=1, p=skills_w)[0]}
+
+
