@@ -144,7 +144,6 @@ class Job:
         self.update_time()
         Transaction(self.applicant, self.worker, self.id).run()
 
-
     def update_status(self):
         """update status to db"""
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
