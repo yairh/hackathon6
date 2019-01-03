@@ -4,7 +4,7 @@ import utils
 import mysql.connector
 from conf import username, pw, prt, database
 import logging
-
+import workflow
 
 def main():
     @get("/js/<filepath:re:.*\.js>")
@@ -101,7 +101,7 @@ def main():
 
 
         sectionTemplate = "./templates/episode.tpl"
-        return template("./pages/index.html", version=utils.getVersion(), result=skillers, sectionTemplate=sectionTemplate, nameOfSkill=nameOfSkill, sectionData=skillers)
+        return template("./pages/index.html", version=utils.getVersion(), result=skillers2, sectionTemplate=sectionTemplate, nameOfSkill=nameOfSkill, sectionData=skillers)
 
 
     @route('/ajax/show/<catid>/episode/<skillid>')
@@ -265,10 +265,11 @@ def main():
         result = {
             "date": request.forms.get("date"),
             "message": request.forms.get("message"),
-            "user": "Ilona",
+            "username": "Ilona",
             "skill": "Mathematics",
-            "worker": "Yair"
+            "worker_name": "Yair"
         }
+        workflow.new_job(result)
         print(result)
         sectionTemplate = "./templates/myShareeces.tpl"
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, result=result, sectionData={})
@@ -276,7 +277,33 @@ def main():
     @get('/shareeces')
     def get_myshareeces_page():
         sectionTemplate = "./templates/MyShareeces.tpl"
+
+        userid=2
+
+        con = mysql.connector.connect(user=username, password=pw, database=database, port=prt)
+        cur = con.cursor()
+        try:
+
+            cur.execute(
+                """
+                SELECT t1.username, t2.skill
+                FROM jobs
+                JOIN users as t1
+                ON jobs.worker_id=t1.id
+                JOIN skills as t2
+                ON jobs.skill_id=t2.id
+                WHERE jobs.user_id=%s
+                """ % (userid,))
+
+            result = cur.fetchall()
+
+            # print(result)
+
+        except Exception as err:
+            logging.exception(err)
+        con.close()
         return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
 
     @error(404)
     def error404(error):

@@ -1,6 +1,5 @@
 from database_queries import *
 from classes import *
-from conf import username, pw, prt, database
 
 
 def new_user(user_dic):
@@ -22,6 +21,7 @@ def new_job(job_dic):
 
 
 def handshake(shake_dic):
+
     job = query_job(shake_dic['job_id'])
     if job.status == 'Pending':
         job.start()

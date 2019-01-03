@@ -94,7 +94,8 @@ def dummy_person_skills():
                {'username': 'Yair', 'skill': 'Electrician'},
                {'username': 'Yair', 'skill': 'Professional Wizard'},
                {'username': 'Yair', 'skill': 'Electrician'},
-               {'username': 'Yair', 'skill': 'Physics'}]
+               {'username': 'Yair', 'skill': 'Physics'},
+               {'username': 'Ilona', 'skill': 'Is Ilona'}]
     for i in range(len(details)):
         yield details[i]
 
