@@ -127,8 +127,8 @@ class Job:
         """update status to db"""
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
         cur = cnx.cursor()
-        query = """update jobs set status=(select id from statuses where status='{}');""".format(
-            self.status)
+        query = """update jobs set status=(select id from statuses where status='{}' where id={});""".format(
+            self.status,self.id)
         cur.execute(query)
         cnx.commit()
         cnx.close()
@@ -136,8 +136,8 @@ class Job:
     def update_time(self):
         cnx = mysql.connector.connect(user=username, password=pw, port=prt, database=database)
         cur = cnx.cursor()
-        query = """update jobs set {}=now();""".format(
-            self.time)
+        query = """update jobs set {}=now() where id={};""".format(
+            self.time,self.id)
         cur.execute(query)
         cnx.commit()
         cnx.close()
